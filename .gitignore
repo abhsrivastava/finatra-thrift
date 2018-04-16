@@ -1,0 +1,8 @@
+project/target
+project/project
+target
+thrift-client/target
+thrift-idl/target
+thrift-server/target
+.DS_Store
+.vscode
