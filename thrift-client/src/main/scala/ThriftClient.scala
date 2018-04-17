@@ -1,14 +1,13 @@
 package com.abhi
 
-import org.apache.thrift.protocol._
-import org.apache.thrift.transport._
 import Calculator._
+import com.twitter.finagle._
+import com.twitter.util.{Await, Awaitable, Duration, Future}
+import com.twitter.conversions.time._
 
 object ThriftClient extends App {
-  val transport = new TSocket("localhost", 9090)
-  transport.open()
-  val protocol = new TBinaryProtocol(transport)
-  val client = new Client(protocol)
-  val result = client.add(10, 20)
+  val ep = Thrift.client.build[MethodPerEndpoint]("localhost:9090")
+  val resultFuture : Future[Int] = ep.add(2, 10)
+  val result = Await.result(resultFuture, 5 seconds)
   println(result)
 }

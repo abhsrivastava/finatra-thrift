@@ -43,7 +43,7 @@ lazy val thriftClient = (project in file("thrift-client"))
   )
   .settings(
     libraryDependencies ++= Seq(
-      "org.apache.thrift" % "libthrift" % "0.10.0"      
+      "com.twitter" %% "scrooge-core" % "18.4.0"
     )
   )
   .dependsOn(thriftIdl)
